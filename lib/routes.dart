@@ -1,11 +1,15 @@
-import 'package:animal_vax/login/login_widget.dart';
+import 'package:animal_vax/location/location_main.dart';
+import 'package:animal_vax/login/utilities/login_widget.dart';
+import 'package:animal_vax/registration/confirmation.dart';
+import 'package:animal_vax/registration/reg_main.dart';
 import 'package:flutter/material.dart';
 import 'login/login_main.dart';
 
 class RouteManager{
   static const String loginPage = '/';
   static const String register = '/register';
-  static const String loginPet = '/thirdPage';
+  static const String registerConfirmation = '/registerConfirmation';
+  static const String location = '/location';
 
   static Route<dynamic> generateRoute(RouteSettings settings){
     var valuesReceived;
@@ -19,11 +23,17 @@ class RouteManager{
         );
       case register:
         return MaterialPageRoute(
-          builder: (context) => const Login(),
+          builder: (context) => Register(),
         );
-      case loginPet:
+      case location:
         return MaterialPageRoute(
-          builder: (context) => const Login(),
+          builder: (context) => LocationChoice(
+            uname: valuesReceived["uname"],
+          ),
+        );
+      case registerConfirmation:
+        return MaterialPageRoute(
+          builder: (context) => RegConfirmation(),
         );
       default:
         throw const FormatException('Routing la error irukku');

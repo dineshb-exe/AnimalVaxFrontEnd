@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../routes.dart';
-import 'login_widget.dart';
+import 'utilities/login_widget.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class Login extends StatelessWidget {
             ),
             LoginWidget(
               type: "Doc",
-            )
+            ),
           ],
         )
       ),
