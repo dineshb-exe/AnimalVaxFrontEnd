@@ -1,5 +1,6 @@
 import 'package:animal_vax/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../global_utilities/general_field.dart';
 
@@ -73,8 +74,9 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(MediaQuery.of(context).size.width*0.3,MediaQuery.of(context).size.height*0.05),
               ),
-              child: const Text(
+              child: Text(
                 "Submit",
+                style: GoogleFonts.poppins()
               ),
             ),
             SizedBox(

@@ -1,9 +1,8 @@
-import 'dart:ui';
-
 import 'package:animal_vax/global_utilities/snackbar.dart';
 import 'package:animal_vax/login/utilities/login_header.dart';
 import 'package:animal_vax/global_utilities/general_field.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../routes.dart';
 
@@ -67,15 +66,19 @@ class _LoginWidgetState extends State<LoginWidget> {
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(MediaQuery.of(context).size.width*0.3,MediaQuery.of(context).size.height*0.05),
                 ),
-                child: const Text(
+                child: Text(
                   "Submit",
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500
+                  )
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                      "Don't have an account?"
+                      "Don't have an account?",
+                      style: GoogleFonts.poppins()
                   ),
                   TextButton(
                       onPressed: (){
@@ -83,6 +86,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                       },
                       child: Text(
                         "Register",
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w500
+                        ),
                       )
                   ),
                 ],

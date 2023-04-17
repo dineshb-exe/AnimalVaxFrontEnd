@@ -5,6 +5,9 @@ class LocationImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset("assets/location.jpeg");
+    return Image.asset(
+      "assets/Location23.jpg",
+      height: 300,
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../routes.dart';
 import 'utilities/login_widget.dart';
 
@@ -11,8 +12,9 @@ class Login extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            "Dog Vaccination"
+          title: Text(
+            "TN Pet Vaccination",
+            style: GoogleFonts.poppins()
           ),
           centerTitle: true,
           bottom: const TabBar(

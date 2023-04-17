@@ -10,6 +10,7 @@ class RouteManager{
   static const String register = '/register';
   static const String registerConfirmation = '/registerConfirmation';
   static const String location = '/location';
+  static const String dashboard = '/dashboard';
 
   static Route<dynamic> generateRoute(RouteSettings settings){
     var valuesReceived;
@@ -34,6 +35,10 @@ class RouteManager{
       case registerConfirmation:
         return MaterialPageRoute(
           builder: (context) => RegConfirmation(),
+        );
+      case dashboard:
+        return MaterialPageRoute(
+          builder: (context) => const Login(),
         );
       default:
         throw const FormatException('Routing la error irukku');
