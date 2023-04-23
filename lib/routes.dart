@@ -1,3 +1,4 @@
+import 'package:animal_vax/dashboard/dashboard_main.dart';
 import 'package:animal_vax/location/location_main.dart';
 import 'package:animal_vax/login/utilities/login_widget.dart';
 import 'package:animal_vax/registration/confirmation.dart';
@@ -38,7 +39,7 @@ class RouteManager{
         );
       case dashboard:
         return MaterialPageRoute(
-          builder: (context) => const Login(),
+          builder: (context) => Dashboard(),
         );
       default:
         throw const FormatException('Routing la error irukku');

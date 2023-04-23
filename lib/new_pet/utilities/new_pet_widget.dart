@@ -53,6 +53,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                 }).toList(),
                 onChanged: (String? value){
                   dropdownVal=value!;
+                  print(dropdownVal);
+                  print(value);
+                  setState(() {});
                 }
             ),
           ],
