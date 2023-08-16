@@ -1,7 +1,6 @@
 import 'package:animal_vax/dashboard/utilities/dashboard_widget.dart';
 import 'package:animal_vax/dashboard/utilities/dialog_form.dart';
-import 'package:animal_vax/global_utilities/general_field.dart';
-import 'package:animal_vax/new_pet/utilities/new_pet_widget.dart';
+import 'package:animal_vax/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,6 +16,21 @@ class Dashboard extends StatelessWidget {
           style: GoogleFonts.poppins(),
         ),
         centerTitle: true,
+        actions: [
+          PopupMenuButton(
+            onSelected: (String value){
+              if(value=="logout")
+              Navigator.popAndPushNamed(context, RouteManager.loginPage);
+              return null;
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: Text("Logout"),
+                value: "logout",
+              ),
+            ]
+          ),
+        ],
       ),
       body: DashboardWidget(),
       floatingActionButton: FloatingActionButton(
@@ -27,24 +41,4 @@ class Dashboard extends StatelessWidget {
       ),
     );
   }
-}
-
-DialogForm(BuildContext context) {
-  showDialog(
-      context: context,
-      builder: (context) {
-        var formKey;
-          return AlertDialog(
-            content: NewPetWidget(),
-            title: Text('Stateful Dialog'),
-            actions: <Widget>[
-              InkWell(
-                child: Text('OK'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          );
-      });
 }

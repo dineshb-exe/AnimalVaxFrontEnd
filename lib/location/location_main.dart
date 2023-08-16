@@ -16,6 +16,7 @@ class LocationChoice extends StatefulWidget {
 
 class _LocationChoiceState extends State<LocationChoice> {
   final TextEditingController locCon = TextEditingController();
+  bool _loading=false;
   late bool locFlag = false;
   @override
   Widget build(BuildContext context) {
@@ -54,10 +55,13 @@ class _LocationChoiceState extends State<LocationChoice> {
             Form(
               child: GeneralField(
                 placeholder: "Address",
-                tc: locCon
+                tc: locCon,
+                validationType: 0,
               )
             ),
-            Text(
+            (_loading)?
+            CircularProgressIndicator()
+              :Text(
                 "Or"
             ),
             SizedBox(
@@ -65,6 +69,8 @@ class _LocationChoiceState extends State<LocationChoice> {
             ),
             ElevatedButton.icon(
               onPressed: () async{
+                _loading = !_loading;
+                setState(() {});
                 Location location = new Location();
 
                 bool _serviceEnabled;
@@ -90,6 +96,7 @@ class _LocationChoiceState extends State<LocationChoice> {
                 _locationData = await location.getLocation();
                 locCon.text = "${_locationData.latitude},${_locationData.longitude}";
                 locFlag=true;
+                _loading = !_loading;
                 setState(() {});
               },
               icon: Icon(

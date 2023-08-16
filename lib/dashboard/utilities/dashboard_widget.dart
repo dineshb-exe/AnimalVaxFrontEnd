@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DashboardWidget extends StatefulWidget {
   const DashboardWidget({Key? key}) : super(key: key);
@@ -8,11 +9,11 @@ class DashboardWidget extends StatefulWidget {
 }
 
 class _DashboardWidgetState extends State<DashboardWidget> {
-  @override
-  final List<String> entries = <String>['A', 'B', 'C'];
+  final List<String> entries = <String>['A'];
   final List<int> colorCodes = <int>[600, 500, 100];
+  @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return (entries.isNotEmpty)?ListView.builder(
       padding: const EdgeInsets.all(8),
       itemCount: entries.length,
       itemBuilder: (BuildContext context,int index) {
@@ -35,7 +36,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
               ListTile(
                 leading: Icon(Icons.pets_rounded),
                 title: Text('Pet Name: ${entries[index]}'),
-                subtitle: Text('Species: Dog, Breed: X'),
+                subtitle: Text('Species: Dog, Breed: X, Gender, Microchip No.'),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -56,6 +57,16 @@ class _DashboardWidgetState extends State<DashboardWidget> {
           ),
         );
       }
+    ):
+    Center(
+      child: Text(
+        "No pets were added",
+        style: GoogleFonts.poppins(
+          color: Colors.blue[800],
+          fontWeight: FontWeight.w500,
+          fontSize: 20.0,
+        ),
+      ),
     );
   }
 }

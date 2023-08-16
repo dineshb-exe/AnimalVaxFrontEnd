@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class GeneralField extends StatelessWidget {
   final String placeholder;
   final TextEditingController tc;
-  const GeneralField({Key? key, required this.placeholder, required this.tc}) : super(key: key);
+  final int validationType;
+  const GeneralField({Key? key, required this.placeholder, required this.tc, required this.validationType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,13 @@ class GeneralField extends StatelessWidget {
           border: const OutlineInputBorder(),
         ),
         controller: tc,
+        validator: (validationType==1)?(String? val){
+          if(val==null||val.isEmpty){
+            return "Please Enter some Text";
+          }
+          return null;
+        }
+        :null,
         obscureText: (placeholder=="Password"||placeholder=="Confirm Password")?true: false,
         enableSuggestions: true,
         autocorrect: true,

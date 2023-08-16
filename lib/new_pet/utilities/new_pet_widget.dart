@@ -26,22 +26,27 @@ class _NewPetWidgetState extends State<NewPetWidget> {
             GeneralField(
               placeholder:"Pet Name",
               tc: petNameCont,
+              validationType: 1,
             ),
             GeneralField(
               placeholder:"Breed",
               tc: breedCont,
+              validationType: 1,
             ),
             GeneralField(
               placeholder:"Date of Birth of Pet(DD/MM/YYYY)",
               tc: petAgeCont,
+              validationType: 1,
             ),
             GeneralField(
               placeholder:"Microchip No.",
               tc: microchipCont,
+              validationType: 0,
             ),
             GeneralField(
               placeholder:"Colour",
               tc: colorCont,
+              validationType: 1,
             ),
             DropdownButton(
                 value: dropdownVal,
