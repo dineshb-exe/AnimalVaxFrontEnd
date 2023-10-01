@@ -30,16 +30,18 @@ class RouteManager{
       case location:
         return MaterialPageRoute(
           builder: (context) => LocationChoice(
-            uname: valuesReceived["uname"],
+            authToken: valuesReceived["authToken"],
           ),
         );
       case registerConfirmation:
         return MaterialPageRoute(
-          builder: (context) => RegConfirmation(),
+          builder: (context) => const RegConfirmation(),
         );
       case dashboard:
         return MaterialPageRoute(
-          builder: (context) => Dashboard(),
+          builder: (context) => Dashboard(
+            authToken: valuesReceived["authToken"],
+          ),
         );
       default:
         throw const FormatException('Routing la error irukku');

@@ -6,12 +6,12 @@ part of 'login_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Login _$LoginFromJson(Map<String, dynamic> json) => Login(
+PreLogin _$PreLoginFromJson(Map<String, dynamic> json) => PreLogin(
       email: json['email'] as String,
       password: json['password'] as String,
     );
 
-Map<String, dynamic> _$LoginToJson(Login instance) => <String, dynamic>{
+Map<String, dynamic> _$PreLoginToJson(PreLogin instance) => <String, dynamic>{
       'email': instance.email,
       'password': instance.password,
     };

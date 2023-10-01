@@ -1,11 +1,13 @@
 import 'package:animal_vax/dashboard/utilities/dashboard_widget.dart';
 import 'package:animal_vax/dashboard/utilities/dialog_form.dart';
+import 'package:animal_vax/login/post_login_model.dart';
 import 'package:animal_vax/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Dashboard extends StatelessWidget {
-  const Dashboard({Key? key}) : super(key: key);
+  final PostLogin authToken;
+  const Dashboard({Key? key, required this.authToken}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

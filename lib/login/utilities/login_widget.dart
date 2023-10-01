@@ -1,16 +1,16 @@
-import 'package:animal_vax/global_utilities/snackbar.dart';
+import 'package:animal_vax/login/bloc/login_bloc.dart';
 import 'package:animal_vax/login/login_model.dart';
 import 'package:animal_vax/login/utilities/login_header.dart';
 import 'package:animal_vax/global_utilities/general_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:animal_vax/login/utilities/login_services.dart';
 
 import '../../routes.dart';
 
 class LoginWidget extends StatefulWidget {
-  String type="Doc";
-  LoginWidget({Key? key, required this.type}) : super(key: key);
+  final String type;
+  final LoginBloc loginBloc;
+  const LoginWidget({Key? key, required this.type, required this.loginBloc}) : super(key: key);
 
   @override
   State<LoginWidget> createState() => _LoginWidgetState();
@@ -20,32 +20,16 @@ class _LoginWidgetState extends State<LoginWidget> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController unameCont = TextEditingController();
   TextEditingController passCont = TextEditingController();
-  bool _loading = false;
   Future<void> onSubmit() async {
     if(_formKey.currentState!.validate()){
-      String uname = unameCont.text;
-      String pwd = passCont.text;
-      LoginServices ls1 = LoginServices();
-      Login l1 = Login(
-        email: uname,
-        password: pwd
+      widget.loginBloc.add(
+        LoginButtonPressedEvent(
+          credentials: PreLogin(
+            email: unameCont.text,
+            password: passCont.text
+          ),
+        ),
       );
-      _loading = true;
-      setState(() {});
-      if(await ls1.credentialCheck(l1)){
-        Navigator.popAndPushNamed(
-            context,
-            RouteManager.location,
-            arguments: {
-              "uname": "${uname}",
-            }
-        );
-      }
-      else{
-        _loading = false;
-        setState(() {});
-        snackbar(context, "Invalid Credentials");
-      }
     }
   }
   @override
@@ -57,7 +41,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           child: Column(
             children: [
               LoginHeader(
-                type: "${widget.type}",
+                type: widget.type,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height*0.05,
@@ -77,14 +61,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(MediaQuery.of(context).size.width*0.3,MediaQuery.of(context).size.height*0.05),
                 ),
-                child: (!_loading)?Text(
+                child:Text(
                   "Submit",
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500
                   ),
-                ):
-                CircularProgressIndicator(
-                  strokeWidth: 1.0,
                 ),
               ),
               Row(

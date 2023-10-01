@@ -18,7 +18,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
       itemCount: entries.length,
       itemBuilder: (BuildContext context,int index) {
         return Container(
-          height: 120,
           margin: EdgeInsets.fromLTRB(5, 0, 5, 12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -35,8 +34,16 @@ class _DashboardWidgetState extends State<DashboardWidget> {
             children: <Widget>[
               ListTile(
                 leading: Icon(Icons.pets_rounded),
-                title: Text('Pet Name: ${entries[index]}'),
-                subtitle: Text('Species: Dog, Breed: X, Gender, Microchip No.'),
+                title: Text(
+                  'Pet Name: ${entries[index]}',
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500
+                  ),
+                ),
+                subtitle: Text(
+                  'Species: Dog, Breed: X, Gender, Microchip No.',
+                  style: GoogleFonts.poppins(),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,

@@ -1,4 +1,4 @@
-import 'package:animal_vax/new_pet/utilities/new_pet_widget.dart';
+import 'package:animal_vax/dashboard/utilities/new_pet_widget.dart';
 import 'package:flutter/material.dart';
 DialogForm(BuildContext context) {
   showDialog(
