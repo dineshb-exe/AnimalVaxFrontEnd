@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:animal_vax/login/login_model.dart';
 import 'package:animal_vax/login/post_login_model.dart';
+import 'package:animal_vax/login/user_model.dart';
 import 'package:animal_vax/login/utilities/login_services.dart';
 import 'package:bloc/bloc.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:meta/meta.dart';
 
 part 'login_event.dart';
@@ -36,7 +38,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     var responseValues = await ls1.credentialCheck(l1);
     if(responseValues['status'] == "Success"){
       PostLogin authToken = PostLogin(jwtToken: responseValues['data']);
-      emit(LoginNavigateToLocationActionState(authToken: authToken));
+      Map<String, dynamic> payload = Jwt.parseJwt(authToken.jwtToken);
+      print(payload);
+      emit(LoginNavigateToLocationActionState(authToken: authToken, userInfo: User.fromJson(payload)));
+    }
+    else{
+      emit(LoginInitialState());
+      emit(LoginCredentialsFailedActionState());
     }
   }
 }

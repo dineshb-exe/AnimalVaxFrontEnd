@@ -15,7 +15,8 @@ abstract class LoginActionState extends LoginState {}
 
 class LoginNavigateToLocationActionState extends LoginActionState {
   final PostLogin authToken;
-  LoginNavigateToLocationActionState({required this.authToken});
+  final User userInfo;
+  LoginNavigateToLocationActionState({required this.authToken, required this.userInfo});
 }
 
 class LoginCredentialsFailedActionState extends LoginActionState {}

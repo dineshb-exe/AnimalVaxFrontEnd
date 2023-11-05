@@ -19,8 +19,9 @@ class LocationFetchingState extends LocationState {}
 abstract class LocationActionState extends LocationState {}
 
 class LocationNavigateToDashboardActionState extends LocationActionState {
-  PostLogin authToken;
-  LocationNavigateToDashboardActionState({required this.authToken});
+  final PostLogin authToken;
+  final User userInfo;
+  LocationNavigateToDashboardActionState({required this.authToken, required this.userInfo});
 }
 
 

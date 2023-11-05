@@ -1,4 +1,5 @@
 import 'package:animal_vax/routes.dart';
+import 'package:animal_vax/themes/color_schemes.g.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,10 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TN Pet Vaccination Portal',
-      theme: ThemeData(
-        colorSchemeSeed: Colors.blue,
-        useMaterial3: true,
-      ),
+      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+      themeMode: ThemeMode.system,
       initialRoute: RouteManager.loginPage,
       onGenerateRoute: RouteManager.generateRoute
     );

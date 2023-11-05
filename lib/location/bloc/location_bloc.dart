@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:animal_vax/login/post_login_model.dart';
+import 'package:animal_vax/login/user_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:location/location.dart';
 import 'package:meta/meta.dart';
@@ -59,6 +60,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
 
   FutureOr<void> locationDashboardNavigateEvent(LocationDashboardNavigateEvent event, Emitter<LocationState> emit) {
     PostLogin authToken = event.authToken;
-    emit(LocationNavigateToDashboardActionState(authToken: authToken));
+    User userInfo = event.userInfo;
+    emit(LocationNavigateToDashboardActionState(authToken: authToken, userInfo: userInfo));
   }
 }

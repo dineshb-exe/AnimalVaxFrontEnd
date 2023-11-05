@@ -1,25 +1,23 @@
-import 'package:animal_vax/global_utilities/general_field.dart';
-import 'package:animal_vax/location/utilities/location_image.dart';
 import 'package:animal_vax/location/utilities/location_widget.dart';
 import 'package:animal_vax/login/post_login_model.dart';
+import 'package:animal_vax/login/user_model.dart';
 import 'package:animal_vax/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:location/location.dart';
 
 import 'bloc/location_bloc.dart';
 
-class LocationChoice extends StatefulWidget {
+class LocationMain extends StatefulWidget {
   final PostLogin authToken;
+  final User userInfo;
 
-  const LocationChoice({Key? key, required this.authToken}) : super(key: key);
+  const LocationMain({Key? key, required this.authToken, required this.userInfo}) : super(key: key);
 
   @override
-  State<LocationChoice> createState() => _LocationChoiceState();
+  State<LocationMain> createState() => _LocationMainState();
 }
 
-class _LocationChoiceState extends State<LocationChoice> {
+class _LocationMainState extends State<LocationMain> {
   final LocationBloc locationBloc = LocationBloc();
   @override
   void initState() {
@@ -40,7 +38,8 @@ class _LocationChoiceState extends State<LocationChoice> {
             context,
             RouteManager.dashboard,
             arguments: {
-              'authToken': state.authToken
+              'authToken': state.authToken,
+              'userInfo': state.userInfo
             }
           );
         }
@@ -55,6 +54,7 @@ class _LocationChoiceState extends State<LocationChoice> {
               coordinates: successState.coordinates,
               locationBloc: locationBloc,
               authToken: widget.authToken,
+              userInfo: widget.userInfo,
             );
           case LocationLoadingState:
             return LocationWidget(
@@ -63,6 +63,7 @@ class _LocationChoiceState extends State<LocationChoice> {
               coordinates: "",
               locationBloc: locationBloc,
               authToken: widget.authToken,
+              userInfo: widget.userInfo,
             );
           default:
             return const Scaffold();

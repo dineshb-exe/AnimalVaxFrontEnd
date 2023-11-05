@@ -8,6 +8,7 @@ class LocationInitialEvent  extends LocationEvent {}
 class LocationButtonPressedEvent  extends LocationEvent {}
 
 class LocationDashboardNavigateEvent extends LocationEvent {
-  PostLogin authToken;
-  LocationDashboardNavigateEvent({required this.authToken});
+  final PostLogin authToken;
+  final User userInfo;
+  LocationDashboardNavigateEvent({required this.authToken, required this.userInfo});
 }

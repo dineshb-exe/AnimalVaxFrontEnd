@@ -1,8 +1,11 @@
+import 'package:animal_vax/dashboard/bloc/dashboard_bloc.dart';
+import 'package:animal_vax/dashboard/utilities/pet_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DashboardWidget extends StatefulWidget {
-  const DashboardWidget({Key? key}) : super(key: key);
+  final DashboardBloc dashboardBloc;
+  const DashboardWidget({Key? key, required this.dashboardBloc}) : super(key: key);
 
   @override
   State<DashboardWidget> createState() => _DashboardWidgetState();
@@ -10,66 +13,20 @@ class DashboardWidget extends StatefulWidget {
 
 class _DashboardWidgetState extends State<DashboardWidget> {
   final List<String> entries = <String>['A'];
-  final List<int> colorCodes = <int>[600, 500, 100];
   @override
   Widget build(BuildContext context) {
     return (entries.isNotEmpty)?ListView.builder(
       padding: const EdgeInsets.all(8),
       itemCount: entries.length,
       itemBuilder: (BuildContext context,int index) {
-        return Container(
-          margin: EdgeInsets.fromLTRB(5, 0, 5, 12),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.lightBlue[2],
-            boxShadow: [
-              BoxShadow(
-                color: Colors.blue[50]!,
-                spreadRadius: 2,
-              ),
-            ]
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                leading: Icon(Icons.pets_rounded),
-                title: Text(
-                  'Pet Name: ${entries[index]}',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w500
-                  ),
-                ),
-                subtitle: Text(
-                  'Species: Dog, Breed: X, Gender, Microchip No.',
-                  style: GoogleFonts.poppins(),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  TextButton(
-                    child: const Text('Book Appointment'),
-                    onPressed: () {/* ... */},
-                  ),
-                  const SizedBox(width: 8),
-                  TextButton(
-                    child: const Text('Edit Details'),
-                    onPressed: () {/* ... */},
-                  ),
-                  const SizedBox(width: 8),
-                ],
-              ),
-            ],
-          ),
-        );
+        return PetTile(petName: entries[index],);
       }
     ):
     Center(
       child: Text(
         "No pets were added",
         style: GoogleFonts.poppins(
-          color: Colors.blue[800],
+          color: Theme.of(context).colorScheme.primary,
           fontWeight: FontWeight.w500,
           fontSize: 20.0,
         ),

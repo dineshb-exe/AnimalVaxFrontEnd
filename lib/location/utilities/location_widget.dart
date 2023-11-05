@@ -1,11 +1,9 @@
-import 'package:animal_vax/global_utilities/general_field.dart';
 import 'package:animal_vax/location/bloc/location_bloc.dart';
 import 'package:animal_vax/location/utilities/location_image.dart';
 import 'package:animal_vax/login/post_login_model.dart';
-import 'package:animal_vax/routes.dart';
+import 'package:animal_vax/login/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:location/location.dart';
 
 class LocationWidget extends StatefulWidget {
   final bool loading;
@@ -13,7 +11,8 @@ class LocationWidget extends StatefulWidget {
   final String coordinates;
   final LocationBloc locationBloc;
   final PostLogin authToken;
-  const LocationWidget({required this.authToken, required this.locationBloc, required this.loading, required this.locFlag, required this.coordinates, super.key});
+  final User userInfo;
+  const LocationWidget({required this.authToken, required this.locationBloc, required this.loading, required this.locFlag, required this.coordinates, required this.userInfo , super.key});
 
   @override
   State<LocationWidget> createState() => _LocationWidgetState();
@@ -90,11 +89,12 @@ class _LocationWidgetState extends State<LocationWidget> {
       floatingActionButton: FloatingActionButton(
         onPressed: (widget.locFlag)?(){
           //Send Location to the backend
-          widget.locationBloc.add(LocationDashboardNavigateEvent(authToken: widget.authToken));
+          widget.locationBloc.add(LocationDashboardNavigateEvent(authToken: widget.authToken, userInfo: widget.userInfo));
         }:null,
         child: const Icon(
             Icons.arrow_forward
         ),
+        backgroundColor: (widget.locFlag)? Theme.of(context).colorScheme.inversePrimary: Colors.grey[300],
       ),
     );
   }

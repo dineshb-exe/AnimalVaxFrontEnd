@@ -36,6 +36,7 @@ class _LoginState extends State<Login> {
               RouteManager.location,
               arguments: {
                 "authToken": state.authToken,
+                "userInfo": state.userInfo,
               }
           );
         }
