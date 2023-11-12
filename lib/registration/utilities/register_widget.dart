@@ -1,4 +1,4 @@
-import 'package:animal_vax/registration/reg_model.dart';
+import 'package:animal_vax/registration/models/reg_model.dart';
 import 'package:animal_vax/registration/reg_services.dart';
 import 'package:animal_vax/routes.dart';
 import 'package:flutter/material.dart';
@@ -71,16 +71,15 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               tc: phnoCont,
               validationType: 1
             ),
-            (!_loading)?SizedBox(
+            SizedBox(
               height: MediaQuery.of(context).size.height*0.05,
-            ):
-            const CircularProgressIndicator(),
+            ),
             SizedBox(
               height: MediaQuery.of(context).size.height*0.02,
             ),
-            ElevatedButton(
+            (!_loading)?ElevatedButton(
               onPressed: () async{
-                if(_regKey.currentState!.validate()){
+                if(_regKey.currentState!.validate() && pwdCont.text == pwd2Cont.text){
                   _loading = true;
                   setState(() {});
                   //HTTP POST call to backend
@@ -105,7 +104,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 "Submit",
                 style: GoogleFonts.poppins()
               ),
-            ),
+            ):
+            const CircularProgressIndicator(),
             SizedBox(
               height: MediaQuery.of(context).size.height*0.05,
             ),

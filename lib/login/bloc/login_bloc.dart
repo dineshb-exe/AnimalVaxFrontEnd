@@ -35,16 +35,22 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         password: pwd
     );
     emit(LoginLoadingState());
-    var responseValues = await ls1.credentialCheck(l1);
-    if(responseValues['status'] == "Success"){
-      PostLogin authToken = PostLogin(jwtToken: responseValues['data']);
-      Map<String, dynamic> payload = Jwt.parseJwt(authToken.jwtToken);
-      print(payload);
-      emit(LoginNavigateToLocationActionState(authToken: authToken, userInfo: User.fromJson(payload)));
+    if (event.type == "Doc") {
+
     }
-    else{
-      emit(LoginInitialState());
-      emit(LoginCredentialsFailedActionState());
+    else {
+      var responseValues = await ls1.credentialCheck(l1);
+      if (responseValues['status'] == "Success") {
+        PostLogin authToken = PostLogin(jwtToken: responseValues['data']);
+        Map<String, dynamic> payload = Jwt.parseJwt(authToken.jwtToken);
+        print(payload);
+        emit(LoginNavigateToLocationActionState(
+            authToken: authToken, userInfo: User.fromJson(payload)));
+      }
+      else {
+        emit(LoginInitialState());
+        emit(LoginCredentialsFailedActionState());
+      }
     }
   }
 }

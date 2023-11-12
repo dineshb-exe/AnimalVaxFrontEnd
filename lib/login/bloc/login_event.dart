@@ -9,5 +9,6 @@ class LoginInitialCheck extends LoginEvent {}
 
 class LoginButtonPressedEvent extends LoginEvent {
   final PreLogin credentials;
-  LoginButtonPressedEvent({required this.credentials});
+  final String type;
+  LoginButtonPressedEvent({required this.credentials, required this.type});
 }

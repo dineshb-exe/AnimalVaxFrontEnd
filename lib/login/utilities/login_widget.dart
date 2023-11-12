@@ -20,18 +20,6 @@ class _LoginWidgetState extends State<LoginWidget> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController unameCont = TextEditingController();
   TextEditingController passCont = TextEditingController();
-  Future<void> onSubmit() async {
-    if(_formKey.currentState!.validate()){
-      widget.loginBloc.add(
-        LoginButtonPressedEvent(
-          credentials: PreLogin(
-            email: unameCont.text,
-            password: passCont.text
-          ),
-        ),
-      );
-    }
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +45,19 @@ class _LoginWidgetState extends State<LoginWidget> {
                 validationType: 1,
               ),
               ElevatedButton(
-                onPressed: onSubmit,
+                onPressed: () {
+                  if(_formKey.currentState!.validate()){
+                    widget.loginBloc.add(
+                      LoginButtonPressedEvent(
+                        credentials: PreLogin(
+                          email: unameCont.text,
+                          password: passCont.text,
+                        ),
+                        type: widget.type
+                      ),
+                    );
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(MediaQuery.of(context).size.width*0.3,MediaQuery.of(context).size.height*0.05),
                 ),
@@ -77,7 +77,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                   ),
                   TextButton(
                       onPressed: (){
-                        Navigator.pushNamed(context, RouteManager.register);
+                        if(widget.type == "Doc"){
+                          Navigator.pushNamed(context, RouteManager.docRegister);
+                        }
+                        else {
+                          Navigator.pushNamed(context, RouteManager.register);
+                        }
                       },
                       child: Text(
                         "Register",
