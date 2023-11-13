@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:animal_vax/dashboard/dashboard_services.dart';
 import 'package:animal_vax/login/post_login_model.dart';
 import 'package:animal_vax/login/user_model.dart';
 import 'package:bloc/bloc.dart';
@@ -19,11 +20,18 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
 
   }
 
-  FutureOr<void> dashboardInitialEvent(DashboardInitialEvent event, Emitter<DashboardState> emit) {
+  FutureOr<void> dashboardInitialEvent(DashboardInitialEvent event, Emitter<DashboardState> emit) async {
     PostLogin authToken = event.authToken;
     User user = event.userInfo;
+    DashboardServices d1 = DashboardServices();
     emit(DashboardLoadingState());
-    emit(DashboardSuccessState());
+    var responseValues = await d1.feedPets(user);
+    if(responseValues["status"] == "Success"){
+      emit(DashboardSuccessState(authToken: authToken, pets: responseValues["data"]));
+    }
+    else{
+      emit(DashboardErrorState());
+    }
   }
 
   FutureOr<void> dashboardAddNewPetNavigateEvent(DashboardAddNewPetNavigateEvent event, Emitter<DashboardState> emit) async {

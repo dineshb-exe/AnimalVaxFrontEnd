@@ -15,7 +15,9 @@ class DashboardLoadingState extends DashboardState {
 }
 
 class DashboardSuccessState extends DashboardState {
-
+  final PostLogin authToken;
+  final List<dynamic> pets;
+  DashboardSuccessState({required this.authToken, required this.pets});
 }
 
 class DashboardErrorState extends DashboardState {

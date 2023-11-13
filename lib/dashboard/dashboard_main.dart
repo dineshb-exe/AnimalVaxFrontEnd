@@ -46,6 +46,7 @@ class _DashboardState extends State<Dashboard> {
       builder: (context, state) {
         switch(state.runtimeType){
           case DashboardSuccessState:
+            DashboardSuccessState successState = state as DashboardSuccessState;
             return Scaffold(
               appBar: AppBar(
                 title: Text(
@@ -70,12 +71,12 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ],
               ),
-              body: DashboardWidget(dashboardBloc: dashboardBloc,),
+              body: DashboardWidget(dashboardBloc: dashboardBloc, pets: successState.pets, authToken: successState.authToken, userInfo: widget.userInfo,),
               bottomNavigationBar: AppNavigationBar(currentPageIndex: 0, dashboardBloc: dashboardBloc, user: widget.userInfo, authToken: widget.authToken),
             );
           case DashboardLoadingState:
             return const Scaffold(
-              body: CircularProgressIndicator(),
+              body: Center(child: CircularProgressIndicator(),),
             );
           case DashboardErrorState:
             return Scaffold(
