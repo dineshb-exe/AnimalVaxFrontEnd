@@ -91,10 +91,11 @@ class _LocationWidgetState extends State<LocationWidget> {
           //Send Location to the backend
           widget.locationBloc.add(LocationDashboardNavigateEvent(authToken: widget.authToken, userInfo: widget.userInfo));
         }:null,
+        backgroundColor: (widget.locFlag)? Theme.of(context).colorScheme.inversePrimary: Colors.grey[400],
         child: const Icon(
-            Icons.arrow_forward
+          Icons.arrow_forward,
+          color: Colors.white,
         ),
-        backgroundColor: (widget.locFlag)? Theme.of(context).colorScheme.inversePrimary: Colors.grey[300],
       ),
     );
   }

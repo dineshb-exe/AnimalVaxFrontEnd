@@ -17,7 +17,7 @@ class RouteManager {
   static const String docRegister = '/docRegister';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    var valuesReceived;
+    Map<String, dynamic>? valuesReceived;
     if (settings.arguments != null) {
       valuesReceived = settings.arguments as Map<String, dynamic>;
     }
@@ -33,7 +33,7 @@ class RouteManager {
       case location:
         return MaterialPageRoute(
           builder: (context) => LocationMain(
-            authToken: valuesReceived["authToken"],
+            authToken: valuesReceived!["authToken"],
             userInfo: valuesReceived["userInfo"],
           ),
         );
@@ -44,14 +44,14 @@ class RouteManager {
       case dashboard:
         return MaterialPageRoute(
           builder: (context) => Dashboard(
-            authToken: valuesReceived["authToken"],
+            authToken: valuesReceived!["authToken"],
             userInfo: valuesReceived["userInfo"],
           ),
         );
       case newPet:
         return MaterialPageRoute(
           builder: (context) => NewPetMain(
-            authToken: valuesReceived['authToken'],
+            authToken: valuesReceived!['authToken'],
             user: valuesReceived['user']
           ),
         );

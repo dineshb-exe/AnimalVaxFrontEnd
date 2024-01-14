@@ -8,7 +8,7 @@ class RegConfirmation extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
+        title: const Text(
           "Registration Successful"
         ),
         centerTitle: true,
@@ -17,7 +17,7 @@ class RegConfirmation extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Icon(
+            const Icon(
               Icons.check_circle_rounded,
               color: Colors.green,
               size: 120.0,
@@ -29,7 +29,7 @@ class RegConfirmation extends StatelessWidget {
               onPressed: (){
                 Navigator.pop(context);
               },
-              child: Text(
+              child: const Text(
                 "Back to Login"
               )
             ),

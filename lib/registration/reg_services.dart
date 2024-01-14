@@ -8,7 +8,7 @@ class OwnerServices{
       Uri.parse("https://tnpetvac.onrender.com/owners/create/"),
       body: o1.toJSON()
     );
-    print("HI DA, ${response}");
+    print("HI DA, $response");
   }
 }
 
@@ -19,6 +19,6 @@ class DoctorServices {
         Uri.parse("https://tnpetvac.onrender.com/doctors/create/"),
         body: d1.toJson()
     );
-    print("HI DA, ${response}");
+    print("HI DA, $response");
   }
 }
