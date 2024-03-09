@@ -64,11 +64,12 @@ class _BookAppointmentState extends State<BookAppointment> {
               body: const Center(child: CircularProgressIndicator()),
             );
           case BookAppointmentLoadingState:
+            final loadingState = state as BookAppointmentLoadingState;
             return Scaffold(
               appBar: AppBar(
                 title: Text("Book an appointment", style: GoogleFonts.poppins(),),
               ),
-              body: BookAppointmentForm(authToken: widget.authToken, bookAppointmentBloc: bookAppointmentBloc, isLoading: true, hospitals: state.hospitals, vaccines: state.vaccines, pet: widget.pet, user: widget.user,),
+              body: BookAppointmentForm(authToken: widget.authToken, bookAppointmentBloc: bookAppointmentBloc, isLoading: true, hospitals: loadingState.hospitals, vaccines: loadingState.vaccines, pet: widget.pet, user: widget.user,),
             );
           case BookAppointmentErrorState:
             return Scaffold(
