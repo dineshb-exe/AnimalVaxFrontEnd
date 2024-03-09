@@ -9,10 +9,12 @@ class LocationWidget extends StatefulWidget {
   final bool loading;
   final bool locFlag;
   final String coordinates;
+  final String latitude;
+  final String longitude;
   final LocationBloc locationBloc;
   final PostLogin authToken;
   final User userInfo;
-  const LocationWidget({required this.authToken, required this.locationBloc, required this.loading, required this.locFlag, required this.coordinates, required this.userInfo , super.key});
+  const LocationWidget({required this.latitude, required this.longitude, required this.authToken, required this.locationBloc, required this.loading, required this.locFlag, required this.coordinates, required this.userInfo , super.key});
 
   @override
   State<LocationWidget> createState() => _LocationWidgetState();
@@ -89,7 +91,7 @@ class _LocationWidgetState extends State<LocationWidget> {
       floatingActionButton: FloatingActionButton(
         onPressed: (widget.locFlag)?(){
           //Send Location to the backend
-          widget.locationBloc.add(LocationDashboardNavigateEvent(authToken: widget.authToken, userInfo: widget.userInfo));
+          widget.locationBloc.add(LocationDashboardNavigateEvent(authToken: widget.authToken, userInfo: widget.userInfo, latitude: widget.latitude, longitude: widget.longitude));
         }:null,
         backgroundColor: (widget.locFlag)? Theme.of(context).colorScheme.inversePrimary: Colors.grey[400],
         child: const Icon(

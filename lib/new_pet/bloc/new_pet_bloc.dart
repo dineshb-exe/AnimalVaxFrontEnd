@@ -26,7 +26,7 @@ class NewPetBloc extends Bloc<NewPetEvent, NewPetState> {
     Pet pet = event.pet;
     NewPetServices n1 = NewPetServices();
     emit(NewPetLoadingState());
-    var responseValues = await n1.addPet(pet);
+    var responseValues = await n1.addPet(pet: pet, authToken: authToken);
     if(responseValues["status"] == "Success"){
       emit(NewPetInitialState());
       emit(NewPetAddedActionState());

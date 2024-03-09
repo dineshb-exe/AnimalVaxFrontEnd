@@ -20,6 +20,8 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     emit(
       LocationLoadedSuccessState(
         coordinates: "",
+        latitude: "",
+        longitude: "",
         locFlag: false
       )
     );
@@ -53,6 +55,8 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     emit(
       LocationLoadedSuccessState(
         coordinates: "${locationData.latitude}, ${locationData.longitude}",
+        latitude: "${locationData.latitude}",
+        longitude: "${locationData.longitude}",
         locFlag: true
       )
     );
@@ -61,6 +65,8 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   FutureOr<void> locationDashboardNavigateEvent(LocationDashboardNavigateEvent event, Emitter<LocationState> emit) {
     PostLogin authToken = event.authToken;
     User userInfo = event.userInfo;
-    emit(LocationNavigateToDashboardActionState(authToken: authToken, userInfo: userInfo));
+    String latitude = event.latitude;
+    String longitude = event.longitude;
+    emit(LocationNavigateToDashboardActionState(latitude: latitude, longitude: longitude, authToken: authToken, userInfo: userInfo));
   }
 }

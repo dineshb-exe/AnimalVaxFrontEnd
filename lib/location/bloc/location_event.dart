@@ -10,5 +10,7 @@ class LocationButtonPressedEvent  extends LocationEvent {}
 class LocationDashboardNavigateEvent extends LocationEvent {
   final PostLogin authToken;
   final User userInfo;
-  LocationDashboardNavigateEvent({required this.authToken, required this.userInfo});
+  final String latitude;
+  final String longitude;
+  LocationDashboardNavigateEvent({required this.latitude, required this.longitude, required this.authToken, required this.userInfo});
 }

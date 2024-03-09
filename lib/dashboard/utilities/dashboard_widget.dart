@@ -11,7 +11,9 @@ class DashboardWidget extends StatefulWidget {
   final List<dynamic> pets;
   final PostLogin authToken;
   final User userInfo;
-  const DashboardWidget({Key? key, required this.dashboardBloc, required this.pets, required this.authToken, required this.userInfo}) : super(key: key);
+  final String latitude;
+  final String longitude;
+  const DashboardWidget({Key? key, required this.latitude, required this.longitude, required this.dashboardBloc, required this.pets, required this.authToken, required this.userInfo}) : super(key: key);
 
   @override
   State<DashboardWidget> createState() => _DashboardWidgetState();
@@ -28,7 +30,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
         padding: const EdgeInsets.all(8),
         itemCount: widget.pets.length,
         itemBuilder: (BuildContext context,int index) {
-          return PetTile(pet: DashboardPet.fromJson(widget.pets[index]),);
+          return PetTile(pet: DashboardPet.fromJson(widget.pets[index]),dashboardBloc: widget.dashboardBloc,authToken: widget.authToken, user: widget.userInfo, latitude: widget.latitude, longitude: widget.longitude,);
         }
       ),
     ):

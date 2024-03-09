@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:animal_vax/dashboard/dashboard_pet_model.dart';
 import 'package:animal_vax/dashboard/dashboard_services.dart';
 import 'package:animal_vax/login/post_login_model.dart';
 import 'package:animal_vax/login/user_model.dart';
@@ -13,8 +14,8 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   DashboardBloc() : super(DashboardInitial()) {
     on<DashboardInitialEvent>(dashboardInitialEvent);
     on<DashboardAddNewPetNavigateEvent>(dashboardAddNewPetNavigateEvent);
-    on<DashboardBookAppointmentEvent>(dashboardBookAppointmentEvent);
-    on<DashboardEditDetailsEvent>(dashboardEditDetailsEvent);
+    on<DashboardBookAppointmentNavigateEvent>(dashboardBookAppointmentNavigateEvent);
+    on<DashboardEditDetailsNavigateEvent>(dashboardEditDetailsNavigateEvent);
     on<DashboardProfileNavigateEvent>(dashboardProfileNavigateEvent);
     on<DashboardLogoutEvent>(dashboardLogoutEvent);
 
@@ -25,11 +26,12 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     User user = event.userInfo;
     DashboardServices d1 = DashboardServices();
     emit(DashboardLoadingState());
-    var responseValues = await d1.feedPets(user);
+    var responseValues = await d1.feedPets(user: user, authToken: authToken);
     if(responseValues["status"] == "Success"){
       emit(DashboardSuccessState(authToken: authToken, pets: responseValues["data"]));
     }
     else{
+      print(responseValues["Message"]);
       emit(DashboardErrorState());
     }
   }
@@ -40,11 +42,14 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     emit(DashboardNewPetNavigateActionState(authToken: authToken, user: user));
   }
 
-  FutureOr<void> dashboardBookAppointmentEvent(DashboardBookAppointmentEvent event, Emitter<DashboardState> emit) {
-
+  FutureOr<void> dashboardBookAppointmentNavigateEvent(DashboardBookAppointmentNavigateEvent event, Emitter<DashboardState> emit) {
+    PostLogin authToken = event.authToken;
+    User user = event.user;
+    DashboardPet pet = event.pet;
+    emit(DashboardBookAppointmentNavigateActionState(pet: pet, user: user, authToken: authToken));
   }
 
-  FutureOr<void> dashboardEditDetailsEvent(DashboardEditDetailsEvent event, Emitter<DashboardState> emit) {
+  FutureOr<void> dashboardEditDetailsNavigateEvent(DashboardEditDetailsNavigateEvent event, Emitter<DashboardState> emit) {
 
   }
 

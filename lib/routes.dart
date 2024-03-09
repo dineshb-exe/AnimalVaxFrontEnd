@@ -1,3 +1,4 @@
+import 'package:animal_vax/book_appointment/book_appointment_main.dart';
 import 'package:animal_vax/dashboard/dashboard_main.dart';
 import 'package:animal_vax/location/location_main.dart';
 import 'package:animal_vax/new_pet/new_pet_main.dart';
@@ -15,6 +16,7 @@ class RouteManager {
   static const String dashboard = '/dashboard';
   static const String newPet = '/newPet';
   static const String docRegister = '/docRegister';
+  static const String bookAppointment = '/bookAppointment';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     Map<String, dynamic>? valuesReceived;
@@ -46,6 +48,8 @@ class RouteManager {
           builder: (context) => Dashboard(
             authToken: valuesReceived!["authToken"],
             userInfo: valuesReceived["userInfo"],
+            latitude: valuesReceived["latitude"],
+            longitude: valuesReceived["longitude"],
           ),
         );
       case newPet:
@@ -57,6 +61,8 @@ class RouteManager {
         );
       case docRegister:
         return MaterialPageRoute(builder: (context) => const DocRegister());
+      case bookAppointment:
+        return MaterialPageRoute(builder: (context) => BookAppointment(pet: valuesReceived!["pet"], authToken: valuesReceived["authToken"], user: valuesReceived["user"], latitude: valuesReceived["latitude"], longitude: valuesReceived["longitude"],),);
       default:
         throw const FormatException('Routing la error irukku');
     }

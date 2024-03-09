@@ -39,7 +39,9 @@ class _LocationMainState extends State<LocationMain> {
             RouteManager.dashboard,
             arguments: {
               'authToken': state.authToken,
-              'userInfo': state.userInfo
+              'userInfo': state.userInfo,
+              'latitude': state.latitude,
+              'longitude': state.longitude
             }
           );
         }
@@ -52,6 +54,8 @@ class _LocationMainState extends State<LocationMain> {
               loading: false,
               locFlag: successState.locFlag,
               coordinates: successState.coordinates,
+              latitude: successState.latitude,
+              longitude: successState.longitude,
               locationBloc: locationBloc,
               authToken: widget.authToken,
               userInfo: widget.userInfo,
@@ -61,6 +65,8 @@ class _LocationMainState extends State<LocationMain> {
               loading: true,
               locFlag: false,
               coordinates: "",
+              latitude: "",
+              longitude: "",
               locationBloc: locationBloc,
               authToken: widget.authToken,
               userInfo: widget.userInfo,

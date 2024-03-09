@@ -30,8 +30,11 @@ class DashboardNavigateToProfileActionState extends DashboardActionState {
 
 }
 
-class DashboardAppointmentBookedActionState extends DashboardActionState {
-
+class DashboardBookAppointmentNavigateActionState extends DashboardActionState {
+  final PostLogin authToken;
+  final User user;
+  final DashboardPet pet;
+  DashboardBookAppointmentNavigateActionState({required this.pet, required this.user, required this.authToken});
 }
 
 class DashboardDetailsEditedActionState extends DashboardActionState {

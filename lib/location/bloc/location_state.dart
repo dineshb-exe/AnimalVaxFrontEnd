@@ -9,8 +9,10 @@ class LocationLoadingState extends LocationState {}
 
 class LocationLoadedSuccessState extends LocationState {
   final String coordinates;
+  final String latitude;
+  final String longitude;
   final bool locFlag;
-  LocationLoadedSuccessState({required this.locFlag, required this.coordinates});
+  LocationLoadedSuccessState({required this.latitude, required this.longitude ,required this.locFlag, required this.coordinates});
 
 }
 
@@ -21,7 +23,9 @@ abstract class LocationActionState extends LocationState {}
 class LocationNavigateToDashboardActionState extends LocationActionState {
   final PostLogin authToken;
   final User userInfo;
-  LocationNavigateToDashboardActionState({required this.authToken, required this.userInfo});
+  final String latitude;
+  final String longitude;
+  LocationNavigateToDashboardActionState({required this.latitude, required this.longitude, required this.authToken, required this.userInfo});
 }
 
 

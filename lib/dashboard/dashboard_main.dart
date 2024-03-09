@@ -12,8 +12,10 @@ import 'package:google_fonts/google_fonts.dart';
 class Dashboard extends StatefulWidget {
   final PostLogin authToken;
   final User userInfo;
+  final String latitude;
+  final String longitude;
 
-  const Dashboard({Key? key, required this.authToken, required this.userInfo}) : super(key: key);
+  const Dashboard({Key? key, required this.latitude, required this.longitude, required this.authToken, required this.userInfo}) : super(key: key);
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -41,6 +43,9 @@ class _DashboardState extends State<Dashboard> {
         }
         else if(state is DashboardNewPetNavigateActionState){
           Navigator.popAndPushNamed(context, RouteManager.newPet, arguments: {'authToken': state.authToken, 'user': state.user});
+        }
+        else if(state is DashboardBookAppointmentNavigateActionState){
+          Navigator.pushNamed(context, RouteManager.bookAppointment, arguments: {'authToken': state.authToken, 'user': state.user, 'pet': state.pet, 'latitude': widget.latitude, 'longitude': widget.longitude});
         }
       },
       builder: (context, state) {
@@ -71,7 +76,7 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ],
               ),
-              body: DashboardWidget(dashboardBloc: dashboardBloc, pets: successState.pets, authToken: successState.authToken, userInfo: widget.userInfo,),
+              body: DashboardWidget(dashboardBloc: dashboardBloc, pets: successState.pets, authToken: successState.authToken, userInfo: widget.userInfo, latitude: widget.latitude, longitude: widget.longitude,),
               bottomNavigationBar: AppNavigationBar(currentPageIndex: 0, dashboardBloc: dashboardBloc, user: widget.userInfo, authToken: widget.authToken),
             );
           case DashboardLoadingState:
